@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bardh DEV | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2F71G5MZV"></script>
@@ -22,13 +23,13 @@
         <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
-            <!--<li><a href="#projects">Projects</a></li>-->
+            <li><a href="#packages">Packages</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="fade-in">
+    <section id="hero" class="fade-in" data-aos="fade-up">
         <h1>Hi, I'm Bardh</h1>
         <p>Building web experiences that think, perform, and inspire.</p>
     </section>
@@ -36,7 +37,7 @@
     <!-- Main Content -->
     <main>
         <!-- About Me -->
-        <section id="about" class="fade-in">
+        <section id="about" class="fade-in" data-aos="fade-up">
             <h2>About Me</h2>
             <p>Hello! I'm Bardh, a passionate software engineer with 7+ years in .NET, Angular, Blazor, cloud technologies, and AI integration. I enjoy building scalable web apps and exploring AI-driven solutions.</p>
             <p>
@@ -51,36 +52,93 @@
             </p>
         </section>
 
-        <!-- Projects -->
-        <!--<section id="projects" class="fade-in">
-        <h2>Projects</h2>
-        <ul>-->
-        <!--<li><strong>Used Books Web App</strong> - <a href="#">GitHub</a></li>-->
-        <!--<li><strong>AI Chat System</strong> - <a href="#">Live Demo</a></li>
-            <li><strong>Insurance & Banking Solutions</strong> - <a href="#">Details</a></li>
-            <li><strong>Freelance Web Projects</strong> - <a href="#">Portfolio</a></li>
-        </ul>
-    </section>-->
+        <!-- Packages Section -->
+        <section id="packages" class="py-20 bg-gray-50">
+            <h2 class="text-4xl font-extrabold text-center mb-12">💎 Web Development Packages</h2>
+
+            <!-- Horizontal Scroll Container -->
+            <div class="packages-container flex overflow-x-auto gap-6 px-6 snap-x snap-mandatory">
+
+                <!-- Starter Package -->
+                <div class="package-card flex-shrink-0 bg-white rounded-3xl shadow-xl p-8 w-80 snap-center transform transition duration-500 hover:scale-105 hover:shadow-2xl fade-in" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-600">Starter</h3>
+                    <p class="text-2xl font-semibold mb-6">$250</p>
+                    <ul class="text-left mb-6 space-y-2">
+                        <li>• 1-page responsive website (mobile + desktop)</li>
+                        <li>• Basic design & layout (template-based)</li>
+                        <li>• Up to 3 content sections</li>
+                        <li>• Domain connection</li>
+                        <li>• 1 round of revisions</li>
+                    </ul>
+                    <p class="font-semibold text-gray-700">Great for personal pages, simple portfolio or music showcases.</p>
+                </div>
+
+                <!-- Standard Package -->
+                <div class="package-card flex-shrink-0 bg-white rounded-3xl shadow-xl p-8 w-80 snap-center transform transition duration-500 hover:scale-105 hover:shadow-2xl fade-in" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold mb-4 text-green-600">Standard</h3>
+                    <p class="text-2xl font-semibold mb-6">$450</p>
+                    <ul class="text-left mb-6 space-y-2">
+                        <li>• Everything in Starter</li>
+                        <li>• Custom design with your branding</li>
+                        <li>• Up to 5 content sections</li>
+                        <li>• Social links & video embed</li>
+                        <li>• Smooth animations & transitions</li>
+                        <li>• 2 rounds of revisions</li>
+                        <li>• Basic SEO optimization</li>
+                    </ul>
+                    <p class="font-semibold text-gray-700">Perfect for freelancers, creatives, or small businesses needing a solid showcase.</p>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="package-card flex-shrink-0 bg-white rounded-3xl shadow-xl p-8 w-80 snap-center transform transition duration-500 hover:scale-105 hover:shadow-2xl fade-in" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-600">Premium</h3>
+                    <p class="text-2xl font-semibold mb-6">$700+</p>
+                    <ul class="text-left mb-6 space-y-2">
+                        <li>• Everything in Standard</li>
+                        <li>• Advanced design (parallax, animations, custom visuals)</li>
+                        <li>• Up to 7 content sections</li>
+                        <li>• Gallery/Portfolio showcase</li>
+                        <li>• Extra SEO optimization</li>
+                        <li>• 1 month of free support</li>
+                        <li>• Priority delivery</li>
+                    </ul>
+                    <p class="font-semibold text-gray-700">Ideal for professional artists, agencies, or anyone serious about branding.</p>
+                </div>
+
+            </div>
+        </section>
+
+
         <!-- Contact -->
-        <section id="contact" class="fade-in py-20 bg-gray-100 dark:bg-gray-800 text-center px-6">
+        <section id="contact" class="fade-in py-20 bg-gray-100 dark:bg-gray-800 text-center px-6" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Build Something Together</h2>
             <p class="text-lg mb-6">Have a project, idea, or just want to say hi? I’d love to hear from you.</p>
             <a href="mailto:fatbardh.hoxhaj@outlook.com"
-               class="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition">
+               class="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition cta-btn">
                 Send Me an Email
             </a>
         </section>
 
     </main>
 
-
     <!-- Back to Top Button -->
-    <!--<button id="backToTop" title="Back to Top">/\</button>-->
+    <button id="backToTop" title="Back to Top">↑</button>
+
+    <!-- Footer -->
     <footer>
         <p>© 2025 F. Hoxhaj. All rights reserved.</p>
     </footer>
 
+    <!-- AOS.js -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
 
+    <!-- Custom Script -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -92,7 +92,7 @@ h2 {
     font-size: 0.9rem;
 }
 
-/* Projects */
+/* Lists */
 ul {
     list-style-type: disc;
     padding-left: 25px;
@@ -112,16 +112,17 @@ ul {
                 color: #00ffff;
             }
 
-/* Contact icons */
+/* Contact CTA */
 #contact a {
-    color: #00bfff;
+    color: #fff;
     font-size: 1.5rem;
     margin-right: 15px;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
 }
 
     #contact a:hover {
         color: #00ffff;
+        transform: scale(1.05);
     }
 
 /* Footer */
@@ -146,10 +147,9 @@ footer {
         transform: translateY(0);
     }
 
-
 /* Back to Top Button */
 #backToTop {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -169,3 +169,36 @@ footer {
         background-color: #00ffff;
         transform: scale(1.1);
     }
+
+/* Packages Cards */
+.group ul {
+    text-align: left;
+}
+
+
+/* Horizontal Packages Scroll */
+.packages-container {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.package-card {
+    scroll-snap-align: center;
+    min-width: 20rem; /* card width */
+    max-width: 20rem;
+    flex-shrink: 0;
+}
+
+/* Optional scrollbar style */
+.packages-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.packages-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.packages-container::-webkit-scrollbar-thumb {
+    background-color: #00bfff;
+    border-radius: 4px;
+}

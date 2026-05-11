@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Signals: Reactive State Made Simple | Bardh DEV</title>
+    <meta name="description" content="Angular's Signals API brings fine-grained reactivity without RxJS complexity. Learn signal(), computed(), and effect() with practical examples.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+    <nav class="blog-nav">
+        <a href="/" class="back-home">← bardh.dev</a>
+    </nav>
+
+    <article class="blog-article">
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="blog-tag">Angular</span>
+                <span class="blog-date">Apr 2026</span>
+            </div>
+            <h1>Angular Signals: Reactive State Made Simple</h1>
+            <p class="article-intro">Angular 16 introduced Signals — a reactive primitive that gives you fine-grained change detection without Zone.js overhead or RxJS boilerplate. Here's everything you need to get started.</p>
+        </header>
+
+        <div class="article-content">
+
+            <h2>The Problem Signals Solve</h2>
+            <p>Angular's traditional change detection runs top-down after every async event, checking the entire component tree. This is expensive at scale. RxJS handles async streams elegantly, but brings considerable boilerplate for simple synchronous state like a counter, a toggle, or a form value.</p>
+            <p>Signals are Angular's answer: lightweight, synchronous, and automatically tracked. When a signal's value changes, only the parts of the template that depend on it re-render — nothing else.</p>
+
+            <h2>The Core API</h2>
+
+            <h3>signal() — writable state</h3>
+            <pre><code>import { signal } from '@angular/core';
+
+const count = signal(0);
+
+// Read — call it like a function
+console.log(count()); // 0
+
+// Write
+count.set(5);
+count.update(val => val + 1); // 6</code></pre>
+
+            <h3>computed() — derived state</h3>
+            <p>Computed signals re-evaluate automatically when any of their dependencies change:</p>
+            <pre><code>import { signal, computed } from '@angular/core';
+
+const price    = signal(100);
+const quantity = signal(3);
+const total    = computed(() => price() * quantity());
+
+console.log(total()); // 300
+price.set(120);
+console.log(total()); // 360 — recalculated automatically</code></pre>
+
+            <h3>effect() — side effects</h3>
+            <p>Run code whenever a signal's value changes:</p>
+            <pre><code>import { signal, effect } from '@angular/core';
+
+const theme = signal('dark');
+
+effect(() => {
+    document.body.setAttribute('data-theme', theme());
+});
+
+theme.set('light'); // triggers the effect immediately</code></pre>
+            <blockquote>
+                <p>Effects must be created inside an injection context (a constructor, or via <code>runInInjectionContext</code>). They clean themselves up automatically when the component is destroyed.</p>
+            </blockquote>
+
+            <h2>A Practical Example: Shopping Cart</h2>
+            <pre><code>import { Component, signal, computed } from '@angular/core';
+
+@Component({
+    selector: 'app-cart',
+    standalone: true,
+    template: `
+        &lt;p&gt;Items: {{ itemCount() }}&lt;/p&gt;
+        &lt;p&gt;Total: ${{ total() | number:'1.2-2' }}&lt;/p&gt;
+        &lt;button (click)="addItem()"&gt;Add Widget&lt;/button&gt;
+    `
+})
+export class CartComponent {
+    items = signal&lt;{ name: string; price: number }[]&gt;([]);
+
+    itemCount = computed(() =&gt; this.items().length);
+    total     = computed(() =&gt;
+        this.items().reduce((sum, item) =&gt; sum + item.price, 0)
+    );
+
+    addItem() {
+        this.items.update(list =&gt; [...list, { name: 'Widget', price: 9.99 }]);
+    }
+}</code></pre>
+            <p>No <code>ChangeDetectorRef</code>, no <code>markForCheck()</code>, no <code>BehaviorSubject</code> — the template just works.</p>
+
+            <h2>Signals vs RxJS</h2>
+            <p>These aren't competing technologies — they're complementary:</p>
+            <ul>
+                <li><strong>Use Signals</strong> for component state, derived values, and anything synchronous.</li>
+                <li><strong>Use RxJS</strong> for HTTP calls, WebSockets, debouncing, and complex async flows.</li>
+                <li>Bridge them with <code>toSignal(observable$)</code> and <code>toObservable(signal)</code> from <code>@angular/core/rxjs-interop</code>.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Signals are Angular's most significant DX improvement since standalone components. For new features, reach for signals first — they're simpler to reason about, easier to test, and faster at runtime. Keep RxJS where async streams genuinely need it, and use the interop utilities to bridge the two worlds cleanly.</p>
+
+        </div>
+    </article>
+
+    <footer>
+        <p>© 2026 Fatbardh Hoxhaj. All rights reserved.</p>
+        <details class="legal-details">
+            <summary>Legal Info ↓</summary>
+            <div class="business-info">
+                <p><strong>NIPT:</strong> M61316013C &nbsp;·&nbsp; <strong>Subjekti:</strong> Fatbardh Hoxhaj</p>
+                <p>Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
+                <p><a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
+            </div>
+        </details>
+    </footer>
+
+</body>
+</html>

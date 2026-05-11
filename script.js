@@ -41,3 +41,43 @@ document.querySelectorAll('nav a').forEach(anchor => {
         target.scrollIntoView({ behavior: 'smooth' });
     });
 });
+
+// Typing effect
+const phrases = [
+    'Full-Stack Web Apps.',
+    'AI-Powered Solutions.',
+    'Clean .NET Backends.',
+    'Angular Frontends.',
+];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function type() {
+    const current = phrases[phraseIndex];
+    const el = document.getElementById('typing-text');
+    if (!el) return;
+
+    if (isDeleting) {
+        el.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        el.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    let speed = isDeleting ? 55 : 95;
+
+    if (!isDeleting && charIndex === current.length) {
+        speed = 1800;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        speed = 300;
+    }
+
+    setTimeout(type, speed);
+}
+
+type();

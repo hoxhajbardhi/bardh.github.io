@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building AI-Powered Apps with .NET 8 and Azure OpenAI | Bardh DEV</title>
+    <meta name="description" content="A practical guide to integrating Azure OpenAI into .NET 8 applications — chat completions, streaming responses, and production best practices.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+    <nav class="blog-nav">
+        <a href="/" class="back-home">← bardh.dev</a>
+    </nav>
+
+    <article class="blog-article">
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="blog-tag">AI</span>
+                <span class="blog-date">May 2026</span>
+            </div>
+            <h1>Building AI-Powered Apps with .NET 8 and Azure OpenAI</h1>
+            <p class="article-intro">Azure OpenAI brings GPT-4 directly into your .NET ecosystem. In this article we set up the official SDK, make chat completion calls, and handle streaming — all inside a clean .NET 8 service.</p>
+        </header>
+
+        <div class="article-content">
+
+            <h2>Why Azure OpenAI in .NET?</h2>
+            <p>As a .NET developer you likely already have infrastructure in Azure. Azure OpenAI integrates naturally with your existing setup — managed identity, Azure Key Vault for secrets, and familiar SDK patterns. It gives you the same GPT models as OpenAI's API, but within your own Azure subscription with enterprise-grade security and compliance.</p>
+
+            <h2>Setting Up</h2>
+            <p>Install the official NuGet package:</p>
+            <pre><code>dotnet add package Azure.AI.OpenAI</code></pre>
+            <p>You'll need your Azure OpenAI endpoint and API key from the Azure portal. Store these in <code>appsettings.json</code> or, better, in Azure Key Vault:</p>
+            <pre><code>{
+  "AzureOpenAI": {
+    "Endpoint": "https://your-resource.openai.azure.com/",
+    "ApiKey": "your-api-key",
+    "DeploymentName": "gpt-4o"
+  }
+}</code></pre>
+
+            <h2>Chat Completion Example</h2>
+            <p>Here's a minimal service that sends a message and returns the response:</p>
+            <pre><code>using Azure;
+using Azure.AI.OpenAI;
+using OpenAI.Chat;
+
+public class AiService
+{
+    private readonly ChatClient _client;
+
+    public AiService(IConfiguration config)
+    {
+        var endpoint  = new Uri(config["AzureOpenAI:Endpoint"]!);
+        var apiKey    = new AzureKeyCredential(config["AzureOpenAI:ApiKey"]!);
+        var deployment = config["AzureOpenAI:DeploymentName"]!;
+
+        var azureClient = new AzureOpenAIClient(endpoint, apiKey);
+        _client = azureClient.GetChatClient(deployment);
+    }
+
+    public async Task&lt;string&gt; AskAsync(string userMessage)
+    {
+        var messages = new List&lt;ChatMessage&gt;
+        {
+            new SystemChatMessage("You are a helpful assistant."),
+            new UserChatMessage(userMessage)
+        };
+
+        ChatCompletion response = await _client.CompleteChatAsync(messages);
+        return response.Content[0].Text;
+    }
+}</code></pre>
+
+            <h2>Streaming Responses</h2>
+            <p>For longer responses, streaming displays text as it arrives — much better UX than waiting for the full answer:</p>
+            <pre><code>public async IAsyncEnumerable&lt;string&gt; AskStreamAsync(string userMessage)
+{
+    var messages = new List&lt;ChatMessage&gt;
+    {
+        new SystemChatMessage("You are a helpful assistant."),
+        new UserChatMessage(userMessage)
+    };
+
+    await foreach (StreamingChatCompletionUpdate update
+        in _client.CompleteChatStreamingAsync(messages))
+    {
+        foreach (ChatMessageContentPart part in update.ContentUpdate)
+        {
+            if (!string.IsNullOrEmpty(part.Text))
+                yield return part.Text;
+        }
+    }
+}</code></pre>
+            <p>In a Blazor app, bind the output to a string and call <code>StateHasChanged()</code> on each token — real-time streaming chat, no SignalR needed.</p>
+
+            <h2>Key Considerations</h2>
+            <ul>
+                <li><strong>Rate limits:</strong> Azure OpenAI enforces TPM (tokens per minute) limits per deployment. Implement exponential backoff for <code>429</code> responses.</li>
+                <li><strong>Token tracking:</strong> Log <code>response.Usage.TotalTokenCount</code> for cost monitoring — token spend adds up fast.</li>
+                <li><strong>System prompt:</strong> Keep it focused and specific. Vague system messages lead to inconsistent outputs across different model versions.</li>
+                <li><strong>Managed Identity:</strong> In production replace the API key with <code>DefaultAzureCredential</code> for keyless authentication — no secrets in config.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>The Azure OpenAI SDK for .NET is straightforward once you understand the client hierarchy: <code>AzureOpenAIClient</code> → <code>GetChatClient()</code> → <code>CompleteChatAsync()</code>. Streaming is first-class through async enumerable, which fits naturally with existing .NET patterns. Start with basic completions, layer in streaming for UX, and secure credentials with managed identity before going to production.</p>
+
+        </div>
+    </article>
+
+    <footer>
+        <p>© 2026 Fatbardh Hoxhaj. All rights reserved.</p>
+        <details class="legal-details">
+            <summary>Legal Info ↓</summary>
+            <div class="business-info">
+                <p><strong>NIPT:</strong> M61316013C &nbsp;·&nbsp; <strong>Subjekti:</strong> Fatbardh Hoxhaj</p>
+                <p>Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
+                <p><a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
+            </div>
+        </details>
+    </footer>
+
+</body>
+</html>

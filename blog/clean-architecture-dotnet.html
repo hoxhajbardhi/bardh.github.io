@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Architecture in .NET 8: A Practical Guide | Bardh DEV</title>
+    <meta name="description" content="Structure your .NET 8 applications for long-term maintainability using Clean Architecture — layers, project layout, and real code examples.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+    <nav class="blog-nav">
+        <a href="/" class="back-home">← bardh.dev</a>
+    </nav>
+
+    <article class="blog-article">
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="blog-tag">.NET</span>
+                <span class="blog-date">Mar 2026</span>
+            </div>
+            <h1>Clean Architecture in .NET 8: A Practical Guide</h1>
+            <p class="article-intro">Clean Architecture separates your business logic from infrastructure concerns, making your codebase testable, maintainable, and framework-agnostic. Here's how to apply it in a real .NET 8 project — with actual code, not just diagrams.</p>
+        </header>
+
+        <div class="article-content">
+
+            <h2>What Is Clean Architecture?</h2>
+            <p>Introduced by Robert C. Martin, Clean Architecture organises code into concentric layers where dependencies always point inward. The business rules at the center know nothing about databases, HTTP, or UI frameworks — they're pure C#.</p>
+            <p>The single enforced rule: <strong>inner layers cannot depend on outer layers</strong>. Domain knows nothing about Entity Framework. Application knows nothing about ASP.NET. Outer layers can depend on inner ones — never the reverse.</p>
+
+            <h2>The Four Layers</h2>
+
+            <h3>1. Domain</h3>
+            <p>The heart of the application. Contains entities, value objects, domain events, and repository <em>interfaces</em> (not implementations). Zero NuGet dependencies — just plain C# classes.</p>
+
+            <h3>2. Application</h3>
+            <p>Orchestrates use cases. Contains commands, queries (CQRS fits naturally here), DTOs, and application services. Depends only on Domain. No EF Core, no HTTP clients.</p>
+
+            <h3>3. Infrastructure</h3>
+            <p>Implements the interfaces defined in Domain. EF Core <code>DbContext</code>, third-party API clients, email services, blob storage — all live here. Depends on Application and Domain.</p>
+
+            <h3>4. Presentation</h3>
+            <p>ASP.NET Core Web API controllers or Minimal API endpoints. Receives HTTP, validates input, delegates to Application, returns responses. Knows nothing about EF Core or domain internals.</p>
+
+            <h2>Project Structure</h2>
+            <pre><code>MyApp/
+├── MyApp.Domain/
+│   ├── Entities/
+│   │   └── User.cs
+│   └── Interfaces/
+│       └── IUserRepository.cs
+├── MyApp.Application/
+│   ├── Users/
+│   │   ├── CreateUserCommand.cs
+│   │   └── CreateUserHandler.cs
+│   └── DTOs/
+│       └── UserDto.cs
+├── MyApp.Infrastructure/
+│   ├── Data/
+│   │   └── AppDbContext.cs
+│   └── Repositories/
+│       └── UserRepository.cs
+└── MyApp.Api/
+    └── Endpoints/
+        └── UserEndpoints.cs</code></pre>
+
+            <h2>A Concrete Example</h2>
+
+            <h3>Domain entity</h3>
+            <pre><code>// MyApp.Domain/Entities/User.cs
+public class User
+{
+    public Guid   Id    { get; private set; }
+    public string Email { get; private set; } = default!;
+    public string Name  { get; private set; } = default!;
+
+    private User() { }
+
+    public static User Create(string email, string name)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new ArgumentException("Email is required.");
+
+        return new User { Id = Guid.NewGuid(), Email = email, Name = name };
+    }
+}</code></pre>
+
+            <h3>Repository interface (Domain)</h3>
+            <pre><code>// MyApp.Domain/Interfaces/IUserRepository.cs
+public interface IUserRepository
+{
+    Task AddAsync(User user, CancellationToken ct = default);
+    Task&lt;User?&gt; GetByEmailAsync(string email, CancellationToken ct = default);
+}</code></pre>
+
+            <h3>Application command handler</h3>
+            <pre><code>// MyApp.Application/Users/CreateUserHandler.cs
+public record CreateUserCommand(string Email, string Name);
+
+public class CreateUserHandler(IUserRepository users)
+{
+    public async Task&lt;Guid&gt; HandleAsync(CreateUserCommand cmd, CancellationToken ct)
+    {
+        var existing = await users.GetByEmailAsync(cmd.Email, ct);
+        if (existing is not null)
+            throw new InvalidOperationException("Email already registered.");
+
+        var user = User.Create(cmd.Email, cmd.Name);
+        await users.AddAsync(user, ct);
+        return user.Id;
+    }
+}</code></pre>
+
+            <h3>Infrastructure implementation</h3>
+            <pre><code>// MyApp.Infrastructure/Repositories/UserRepository.cs
+public class UserRepository(AppDbContext db) : IUserRepository
+{
+    public async Task AddAsync(User user, CancellationToken ct = default)
+    {
+        db.Users.Add(user);
+        await db.SaveChangesAsync(ct);
+    }
+
+    public Task&lt;User?&gt; GetByEmailAsync(string email, CancellationToken ct = default)
+        =&gt; db.Users.FirstOrDefaultAsync(u =&gt; u.Email == email, ct);
+}</code></pre>
+
+            <h3>Minimal API endpoint (Presentation)</h3>
+            <pre><code>// MyApp.Api/Endpoints/UserEndpoints.cs
+app.MapPost("/users", async (CreateUserCommand cmd, CreateUserHandler handler, CancellationToken ct) =>
+{
+    var id = await handler.HandleAsync(cmd, ct);
+    return Results.Created($"/users/{id}", new { id });
+});</code></pre>
+
+            <h2>Benefits and Trade-offs</h2>
+            <ul>
+                <li><strong>Testability:</strong> The Application layer has no infrastructure dependencies — mock <code>IUserRepository</code> and test business logic in total isolation.</li>
+                <li><strong>Replaceability:</strong> Swap EF Core for Dapper, or SQL Server for PostgreSQL, by rewriting Infrastructure — Domain and Application don't change.</li>
+                <li><strong>Overhead for CRUD:</strong> For simple CRUD APIs with little business logic, Clean Architecture is overkill. Reserve it for domains where the rules are genuinely complex.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Clean Architecture is a long-term investment. The initial setup costs more than a flat project structure, but when your domain grows complex — validation rules, domain events, multiple use cases — the separation pays dividends in every sprint. Start with the four projects, enforce the dependency rule at the csproj level, and let the structure guide your decisions as the system evolves.</p>
+
+        </div>
+    </article>
+
+    <footer>
+        <p>© 2026 Fatbardh Hoxhaj. All rights reserved.</p>
+        <details class="legal-details">
+            <summary>Legal Info ↓</summary>
+            <div class="business-info">
+                <p><strong>NIPT:</strong> M61316013C &nbsp;·&nbsp; <strong>Subjekti:</strong> Fatbardh Hoxhaj</p>
+                <p>Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
+                <p><a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
+            </div>
+        </details>
+    </footer>
+
+</body>
+</html>

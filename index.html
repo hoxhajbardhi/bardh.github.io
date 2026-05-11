@@ -21,17 +21,15 @@
     <!-- Navigation -->
     <nav>
         <ul>
-            <!--<li><a href="#hero">Home</a></li>-->
-            <!--<li><a href="#about">About</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#contact">Contact</a></li>-->
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section id="hero" class="fade-in" data-aos="fade-up">
         <h1>Hi, I'm Bardh</h1>
-        <p>Think, perform, and inspire.</p>
+        <p class="hero-typing">I build <span id="typing-text"></span><span class="cursor">|</span></p>
     </section>
 
     <!-- Main Content -->
@@ -108,6 +106,44 @@
             </div>
         </section>-->
 
+        <!-- Blog -->
+        <section id="blog" class="fade-in" data-aos="fade-up">
+            <h2>Articles</h2>
+            <div class="blog-grid">
+
+                <article class="blog-card" data-aos="fade-up">
+                    <div class="blog-meta">
+                        <span class="blog-tag">AI</span>
+                        <span class="blog-date">May 2026</span>
+                    </div>
+                    <h3><a href="blog/ai-dotnet-azure-openai.html">Building AI-Powered Apps with .NET 8 and Azure OpenAI</a></h3>
+                    <p>Learn how to integrate Azure OpenAI into your .NET 8 projects — from chat completions to streaming responses.</p>
+                    <a href="blog/ai-dotnet-azure-openai.html" class="read-more">Read more →</a>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-meta">
+                        <span class="blog-tag">Angular</span>
+                        <span class="blog-date">Apr 2026</span>
+                    </div>
+                    <h3><a href="blog/angular-signals.html">Angular Signals: Reactive State Made Simple</a></h3>
+                    <p>Angular's Signals API changes how we think about reactivity — a practical guide to signal(), computed(), and effect().</p>
+                    <a href="blog/angular-signals.html" class="read-more">Read more →</a>
+                </article>
+
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-meta">
+                        <span class="blog-tag">.NET</span>
+                        <span class="blog-date">Mar 2026</span>
+                    </div>
+                    <h3><a href="blog/clean-architecture-dotnet.html">Clean Architecture in .NET 8: A Practical Guide</a></h3>
+                    <p>Structure your .NET 8 applications for long-term maintainability — with real project layout and code examples.</p>
+                    <a href="blog/clean-architecture-dotnet.html" class="read-more">Read more →</a>
+                </article>
+
+            </div>
+        </section>
+
 
         <!-- Contact -->
         <section id="contact" class="fade-in py-20 bg-gray-100 dark:bg-gray-800 text-center px-6" data-aos="fade-up">
@@ -126,13 +162,15 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 F. Hoxhaj. All rights reserved.</p>
-        <div class="business-info">
-            <p><strong>NIPT:</strong> M61316013C</p>
-            <p><strong>Emri i subjektit:</strong> Fatbardh Hoxhaj</p>
-            <p><strong>Adresa:</strong> Tirane Tirane Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
-            <p><strong>Email:</strong> <a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
-        </div>
+        <p>© 2026 Fatbardh Hoxhaj. All rights reserved.</p>
+        <details class="legal-details">
+            <summary>Legal Info ↓</summary>
+            <div class="business-info">
+                <p><strong>NIPT:</strong> M61316013C &nbsp;·&nbsp; <strong>Subjekti:</strong> Fatbardh Hoxhaj</p>
+                <p>Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
+                <p><a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
+            </div>
+        </details>
     </footer>
 
     <!-- AOS.js -->

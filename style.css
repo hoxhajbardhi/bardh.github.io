@@ -26,7 +26,10 @@
 /* ─── Reset & Base ───────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
+}
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -158,7 +161,6 @@ nav ul li a:hover {
     background: radial-gradient(circle, #a78bfa, transparent 65%);
     top: 50%;
     left: 50%;
-    translate: -50% -50%;
     animation: floatC 18s ease-in-out infinite;
 }
 
@@ -176,7 +178,8 @@ nav ul li a:hover {
 
 @keyframes floatC {
     0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50%       { transform: translate(-50%, -50%) scale(1.15); }
+    33%       { transform: translate(-44%, -56%) scale(1.08); }
+    66%       { transform: translate(-57%, -44%) scale(0.96); }
 }
 
 /* subtle dot-grid texture over hero */
@@ -325,7 +328,12 @@ nav ul li a:hover {
     color: var(--text-faint);
     animation: bobDown 2s ease-in-out infinite;
     opacity: 0.6;
+    text-decoration: none;
+    display: flex;
+    transition: opacity 0.2s;
 }
+
+.scroll-indicator:hover { opacity: 1; }
 
 @keyframes bobDown {
     0%, 100% { transform: translateY(0); }
@@ -389,52 +397,7 @@ section {
     line-height: 1.65;
 }
 
-/* ─── Blog grid ──────────────────────────────────────────────────────────── */
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-    gap: 20px;
-}
-
-.blog-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 26px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-}
-
-/* coloured top bar, revealed on hover */
-.blog-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--card-accent, linear-gradient(90deg, var(--accent), var(--cyan)));
-    opacity: 0;
-    transition: opacity 0.25s;
-}
-
-.blog-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--border-hover);
-    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45);
-}
-
-.blog-card:hover::before { opacity: 1; }
-
-.blog-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-}
-
-/* tag base */
+/* ─── Article tags (used in blog article pages) ─────────────────────────── */
 .blog-tag {
     display: inline-flex;
     align-items: center;
@@ -470,45 +433,6 @@ section {
     font-size: 0.8rem;
 }
 
-.blog-card h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-}
-
-.blog-card h3 a {
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.blog-card h3 a:hover { color: var(--cyan); }
-
-.blog-card > p {
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.read-more {
-    color: var(--accent-light);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.2s, gap 0.2s;
-}
-
-.read-more:hover {
-    color: var(--cyan);
-    gap: 9px;
-}
-
 /* ─── Contact ────────────────────────────────────────────────────────────── */
 .contact-card {
     position: relative;
@@ -532,13 +456,6 @@ section {
     font-size: 1.05rem;
     line-height: 1.75;
     margin-bottom: 36px;
-}
-
-.contact-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 /* ─── Back to top ────────────────────────────────────────────────────────── */
@@ -827,7 +744,7 @@ footer p { margin-bottom: 6px; }
 .form-note.error { color: #f87171; }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 700px) {
     .services-grid { grid-template-columns: 1fr; }
 }
 

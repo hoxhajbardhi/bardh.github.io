@@ -1,43 +1,22 @@
-// IntersectionObserver fade-in for sections
-const faders = document.querySelectorAll('.fade-in');
-
-const appearOptions = {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px"
-};
-
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-    });
-}, appearOptions);
-
-faders.forEach(fader => {
-    appearOnScroll.observe(fader);
-});
-
 // Back to Top button
 const backToTopBtn = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.style.display = "block";
-    } else {
-        backToTopBtn.style.display = "none";
-    }
-});
+if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+        backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    });
 
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
-// Smooth scroll for nav links
-document.querySelectorAll('nav a').forEach(anchor => {
+// Smooth scroll for anchor nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
     });
 });
@@ -49,35 +28,35 @@ const phrases = [
     'Clean .NET Backends.',
     'Angular Frontends.',
 ];
+
 let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+let charIndex   = 0;
+let isDeleting  = false;
 
 function type() {
-    const current = phrases[phraseIndex];
     const el = document.getElementById('typing-text');
     if (!el) return;
 
+    const current = phrases[phraseIndex];
+
     if (isDeleting) {
-        el.textContent = current.substring(0, charIndex - 1);
-        charIndex--;
+        el.textContent = current.substring(0, --charIndex);
     } else {
-        el.textContent = current.substring(0, charIndex + 1);
-        charIndex++;
+        el.textContent = current.substring(0, ++charIndex);
     }
 
-    let speed = isDeleting ? 55 : 95;
+    let delay = isDeleting ? 50 : 90;
 
     if (!isDeleting && charIndex === current.length) {
-        speed = 1800;
+        delay = 1900;
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        speed = 300;
+        delay = 350;
     }
 
-    setTimeout(type, speed);
+    setTimeout(type, delay);
 }
 
 type();

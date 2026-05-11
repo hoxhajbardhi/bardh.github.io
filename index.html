@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bardh DEV | Full-Stack & AI Developer</title>
-    <meta name="description" content="Bardh Hoxhaj — Full-Stack developer specialising in .NET, Angular, and AI-powered web applications.">
+    <meta name="description" content="Bardh Hoxhaj — Full-Stack developer specialising in .NET, Angular, and AI-powered web applications. Available for projects.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,9 +25,10 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-inner">
-            <a href="#" class="nav-brand">bardh<span>.dev</span></a>
+            <a href="/" class="nav-brand">bardh<span>.dev</span></a>
             <ul>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#contact" class="nav-cta">Contact</a></li>
             </ul>
         </div>
@@ -50,7 +51,7 @@
             <p class="hero-typing">I build <span id="typing-text"></span><span class="cursor">|</span></p>
             <div class="hero-actions">
                 <a href="#contact" class="btn btn-primary">Get in touch</a>
-                <a href="#blog" class="btn btn-ghost">Read articles →</a>
+                <a href="work.html" class="btn btn-ghost">View work →</a>
             </div>
         </div>
 
@@ -64,43 +65,74 @@
     <!-- Main Content -->
     <main>
 
-        <!-- Blog -->
-        <section id="blog" data-aos="fade-up">
-            <div class="section-label">Writing</div>
-            <h2 class="section-title">Articles &amp; Insights</h2>
-            <p class="section-sub">Practical deep-dives on .NET, Angular, and AI engineering.</p>
+        <!-- Services -->
+        <section id="services" data-aos="fade-up">
+            <div class="section-label">Services</div>
+            <h2 class="section-title">How I Can Help</h2>
+            <p class="section-sub">Three ways to work together — from a focused audit to an ongoing partnership.</p>
 
-            <div class="blog-grid">
+            <div class="services-grid">
 
-                <article class="blog-card" style="--card-accent: linear-gradient(90deg,#22d3ee,#0ea5e9)" data-aos="fade-up" data-aos-delay="0">
-                    <div class="blog-meta">
-                        <span class="blog-tag tag-ai">AI</span>
-                        <span class="blog-date">May 2026</span>
+                <!-- AI Audit -->
+                <div class="service-card" style="--service-bar: linear-gradient(90deg,#22d3ee,#0ea5e9); --icon-bg: rgba(34,211,238,0.1); --icon-color: #22d3ee" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-top-bar"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
                     </div>
-                    <h3><a href="blog/ai-dotnet-azure-openai.html">Building AI-Powered Apps with .NET 8 and Azure OpenAI</a></h3>
-                    <p>Learn how to integrate Azure OpenAI into your .NET 8 projects — from chat completions to streaming responses.</p>
-                    <a href="blog/ai-dotnet-azure-openai.html" class="read-more">Read more →</a>
-                </article>
+                    <div class="service-format">Fixed Price · 1 Week</div>
+                    <h3>AI Automation Audit</h3>
+                    <p>I map your existing workflows, identify the 2–3 highest-ROI automation opportunities, and deliver a prioritised implementation roadmap your team can act on immediately.</p>
+                    <ul class="service-includes">
+                        <li>Process analysis &amp; documentation</li>
+                        <li>ROI estimates per opportunity</li>
+                        <li>Tech stack recommendation</li>
+                        <li>Implementation roadmap</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Start an Audit →</a>
+                </div>
 
-                <article class="blog-card" style="--card-accent: linear-gradient(90deg,#f87171,#fb923c)" data-aos="fade-up" data-aos-delay="100">
-                    <div class="blog-meta">
-                        <span class="blog-tag tag-angular">Angular</span>
-                        <span class="blog-date">Apr 2026</span>
+                <!-- Custom .NET Dev -->
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-top-bar featured-bar"></div>
+                    <div class="service-featured-badge">Most Popular</div>
+                    <div class="service-icon" style="--icon-bg: rgba(99,102,241,0.12); --icon-color: #818cf8">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                        </svg>
                     </div>
-                    <h3><a href="blog/angular-signals.html">Angular Signals: Reactive State Made Simple</a></h3>
-                    <p>Angular's Signals API changes how we think about reactivity — a practical guide to signal(), computed(), and effect().</p>
-                    <a href="blog/angular-signals.html" class="read-more">Read more →</a>
-                </article>
+                    <div class="service-format">Project-Based</div>
+                    <h3>Custom .NET Development</h3>
+                    <p>End-to-end delivery of .NET 8 backends, Angular frontends, or full-stack applications — from architecture through production deployment on Azure.</p>
+                    <ul class="service-includes">
+                        <li>Requirements &amp; system architecture</li>
+                        <li>Clean Architecture codebase</li>
+                        <li>Azure deployment &amp; CI/CD</li>
+                        <li>Handover &amp; documentation</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Discuss a Project →</a>
+                </div>
 
-                <article class="blog-card" style="--card-accent: linear-gradient(90deg,#a78bfa,#6366f1)" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-meta">
-                        <span class="blog-tag tag-dotnet">.NET</span>
-                        <span class="blog-date">Mar 2026</span>
+                <!-- Fractional Consultant -->
+                <div class="service-card" style="--service-bar: linear-gradient(90deg,#a78bfa,#6366f1); --icon-bg: rgba(167,139,250,0.1); --icon-color: #a78bfa" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-top-bar"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
                     </div>
-                    <h3><a href="blog/clean-architecture-dotnet.html">Clean Architecture in .NET 8: A Practical Guide</a></h3>
-                    <p>Structure your .NET 8 applications for long-term maintainability — with real project layout and code examples.</p>
-                    <a href="blog/clean-architecture-dotnet.html" class="read-more">Read more →</a>
-                </article>
+                    <div class="service-format">Monthly Retainer</div>
+                    <h3>Fractional .NET + AI Consultant</h3>
+                    <p>Embedded part-time on your team — reviewing architecture decisions, unblocking engineers, and keeping your AI integrations sharp month to month.</p>
+                    <ul class="service-includes">
+                        <li>Architecture &amp; code reviews</li>
+                        <li>AI integration oversight</li>
+                        <li>Weekly sync calls</li>
+                        <li>On-demand Slack / email support</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Enquire About Retainer →</a>
+                </div>
 
             </div>
         </section>
@@ -110,11 +142,32 @@
             <div class="contact-card">
                 <div class="contact-glow"></div>
                 <div class="section-label centered">Contact</div>
-                <h2 class="section-title centered">Let's Build Something Together</h2>
-                <p class="contact-sub">Have a project, idea, or just want to say hi?<br>I'd love to hear from you.</p>
-                <div class="contact-actions">
-                    <a href="mailto:bardh.dev18@gmail.com" class="btn btn-primary">Send an Email</a>
-                </div>
+                <h2 class="section-title centered">Let's Talk</h2>
+                <p class="contact-sub">Tell me about your problem. I'll respond within 24 hours.</p>
+
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">Name</label>
+                            <input type="text" id="fname" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Company or project">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="problem">What problem are you solving?</label>
+                        <textarea id="problem" name="problem" rows="5" placeholder="Describe the challenge you're facing — the more specific, the better." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">
+                        Send Message
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                    <p class="form-note" id="formNote" hidden></p>
+                </form>
             </div>
         </section>
 
@@ -138,9 +191,7 @@
 
     <!-- AOS.js -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 750, once: true, offset: 60 });
-    </script>
+    <script>AOS.init({ duration: 750, once: true, offset: 60 });</script>
 
     <!-- Custom Script -->
     <script src="script.js"></script>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Work | Bardh DEV</title>
+    <meta name="description" content="Case studies — AI pipelines, .NET modernisation, and real-time analytics platforms built by Bardh Hoxhaj.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="work.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">bardh<span>.dev</span></a>
+            <ul>
+                <li><a href="work.html" class="nav-active">Work</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <header class="work-hero">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+        <div class="work-hero-content" data-aos="fade-up" data-aos-duration="800">
+            <div class="section-label">Portfolio</div>
+            <h1>Selected Work</h1>
+            <p>Project types and outcomes from real engagements — without naming clients. All results are from delivered work.</p>
+        </div>
+    </header>
+
+    <main class="work-main">
+
+        <!-- Case Study 1: AI Document Intelligence -->
+        <article class="case-study" data-aos="fade-up">
+            <div class="cs-header">
+                <div class="cs-meta">
+                    <span class="cs-industry" style="--ind-color:#22d3ee">Legal / Professional Services</span>
+                    <span class="cs-year">2025</span>
+                </div>
+                <h2>AI Document Intelligence Pipeline</h2>
+                <p class="cs-intro">A firm processing 200+ contracts per month entirely by hand. Review cycles of 3–4 weeks. Bottleneck at every growth stage. The ask: cut that down without replacing the lawyers.</p>
+            </div>
+
+            <div class="cs-cols">
+                <div class="cs-col">
+                    <h3>Challenge</h3>
+                    <p>Legal reviewers spent 40+ hours per week reading contracts to extract clauses, flag risk, and classify document type. The manual process introduced inconsistencies and made scaling impossible without proportional headcount growth.</p>
+                </div>
+                <div class="cs-col">
+                    <h3>Solution</h3>
+                    <p>Built an Azure OpenAI pipeline using GPT-4o and Azure Document Intelligence. Documents are ingested, classified, and passed through a structured extraction chain. Results surface in an Angular dashboard with reviewer override controls. The .NET 8 API handles orchestration, queuing, and audit logging.</p>
+                </div>
+                <div class="cs-col">
+                    <h3>Outcome</h3>
+                    <ul class="cs-metrics">
+                        <li>
+                            <span class="metric-num">95<span class="metric-unit">%</span></span>
+                            <span class="metric-label">reduction in manual review time</span>
+                        </li>
+                        <li>
+                            <span class="metric-num">4 days</span>
+                            <span class="metric-label">average review cycle (was 4 weeks)</span>
+                        </li>
+                        <li>
+                            <span class="metric-num">94<span class="metric-unit">%</span></span>
+                            <span class="metric-label">clause extraction accuracy</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cs-footer">
+                <div class="cs-stack">
+                    <span class="stack-tag">.NET 8</span>
+                    <span class="stack-tag">Azure OpenAI</span>
+                    <span class="stack-tag">Azure Document Intelligence</span>
+                    <span class="stack-tag">Angular 17</span>
+                    <span class="stack-tag">Azure Service Bus</span>
+                    <span class="stack-tag">SQL Server</span>
+                </div>
+                <a href="/#contact" class="cs-cta">Build something similar →</a>
+            </div>
+        </article>
+
+        <div class="cs-divider"></div>
+
+        <!-- Case Study 2: .NET Modernisation -->
+        <article class="case-study" data-aos="fade-up">
+            <div class="cs-header">
+                <div class="cs-meta">
+                    <span class="cs-industry" style="--ind-color:#a78bfa">E-commerce / Retail</span>
+                    <span class="cs-year">2024</span>
+                </div>
+                <h2>Legacy .NET 8 Modernisation</h2>
+                <p class="cs-intro">An 8-year-old .NET Framework 4.7 monolith. Deployments took 3 days, zero automated tests, and a feature backlog measured in months. The team was capable but the codebase had outgrown them.</p>
+            </div>
+
+            <div class="cs-cols">
+                <div class="cs-col">
+                    <h3>Challenge</h3>
+                    <p>Tightly coupled code with no interfaces meant every change had unknown blast radius. Manual FTP-based deployments locked releases to specific windows. Engineers were afraid to refactor. Four senior engineers had quit in 12 months citing tech debt.</p>
+                </div>
+                <div class="cs-col">
+                    <h3>Solution</h3>
+                    <p>Phased migration over 3 months: domain extraction first, then Clean Architecture layering, finally the .NET 8 upgrade. Added a CI/CD pipeline on Azure DevOps with branch protection and automated test gates. Introduced xUnit, integration tests against a real test DB, and Architecture Tests using NetArchTest.</p>
+                </div>
+                <div class="cs-col">
+                    <h3>Outcome</h3>
+                    <ul class="cs-metrics">
+                        <li>
+                            <span class="metric-num">45 min</span>
+                            <span class="metric-label">deploy time (was 3 days)</span>
+                        </li>
+                        <li>
+                            <span class="metric-num">74<span class="metric-unit">%</span></span>
+                            <span class="metric-label">test coverage (was 0%)</span>
+                        </li>
+                        <li>
+                            <span class="metric-num">3×</span>
+                            <span class="metric-label">increase in feature velocity</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cs-footer">
+                <div class="cs-stack">
+                    <span class="stack-tag">.NET 8</span>
+                    <span class="stack-tag">Clean Architecture</span>
+                    <span class="stack-tag">Azure DevOps</span>
+                    <span class="stack-tag">Entity Framework 8</span>
+                    <span class="stack-tag">xUnit</span>
+                    <span class="stack-tag">NetArchTest</span>
+                    <span class="stack-tag">SQL Server</span>
+                </div>
+                <a href="/#contact" class="cs-cta">Modernise your stack →</a>
+            </div>
+        </article>
+
+        <div class="cs-divider"></div>
+
+        <!-- Case Study 3: Real-Time Analytics -->
+        <article class="case-study" data-aos="fade-up">
+            <div class="cs-header">
+                <div class="cs-meta">
+                    <span class="cs-industry" style="--ind-color:#818cf8">SaaS / B2B</span>
+                    <span class="cs-year">2025</span>
+                </div>
+                <h2>Real-Time Analytics Platform</h2>
+                <p class="cs-intro">A B2B SaaS product with no usage visibility. Customer support spent 40% of their day answering questions the product should answer itself. Churn was rising with no data to explain why.</p>
+            </div>
+
+            <div class="cs-cols">
+                <div class="cs-col">
+                    <h3>Challenge</h3>
+                    <p>All product telemetry was batch-processed overnight. By the time issues surfaced, affected customers had already churned or opened tickets. The support team had no tools to proactively identify struggling accounts.</p>
+                </div>
+                <div class="cs-col">
+                    <h3>Solution</h3>
+                    <p>Built a real-time event streaming system using .NET 8 background services and Azure Service Bus. Angular 17 Signals dashboard shows live product usage. An Azure AI layer detects anomalies and flags at-risk accounts automatically. Support gets alerts before customers notice issues.</p>
+                </div>
+                <div class="cs-col">
+                    <h3>Outcome</h3>
+                    <ul class="cs-metrics">
+                        <li>
+                            <span class="metric-num">38<span class="metric-unit">%</span></span>
+                            <span class="metric-label">reduction in support tickets</span>
+                        </li>
+                        <li>
+                            <span class="metric-num">15<span class="metric-unit">%</span></span>
+                            <span class="metric-label">churn reduction (first quarter)</span>
+                        </li>
+                        <li>
+                            <span class="metric-num">&lt;2 s</span>
+                            <span class="metric-label">event-to-dashboard latency</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cs-footer">
+                <div class="cs-stack">
+                    <span class="stack-tag">.NET 8</span>
+                    <span class="stack-tag">Azure Service Bus</span>
+                    <span class="stack-tag">Angular 17 Signals</span>
+                    <span class="stack-tag">Azure AI</span>
+                    <span class="stack-tag">SignalR</span>
+                    <span class="stack-tag">PostgreSQL</span>
+                </div>
+                <a href="/#contact" class="cs-cta">Start a similar project →</a>
+            </div>
+        </article>
+
+        <!-- CTA -->
+        <div class="work-cta-block" data-aos="fade-up">
+            <h2>Have a similar problem?</h2>
+            <p>Tell me what you're building and I'll tell you if I can help.</p>
+            <a href="/#contact" class="btn btn-primary">Get in touch</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Fatbardh Hoxhaj. All rights reserved.</p>
+        <details class="legal-details">
+            <summary>Legal Info ↓</summary>
+            <div class="business-info">
+                <p><strong>NIPT:</strong> M61316013C &nbsp;·&nbsp; <strong>Subjekti:</strong> Fatbardh Hoxhaj</p>
+                <p>Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
+                <p><a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
+            </div>
+        </details>
+    </footer>
+
+    <button id="backToTop" title="Back to Top">↑</button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 750, once: true, offset: 60 });</script>
+    <script src="script.js"></script>
+</body>
+</html>

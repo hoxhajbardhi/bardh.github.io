@@ -28,7 +28,7 @@ if (contactForm) {
         const subject = encodeURIComponent(`Inquiry from ${name}${company ? ` — ${company}` : ''}`);
         const body    = encodeURIComponent(`Name: ${name}\nCompany: ${company || 'N/A'}\n\nWhat problem are you solving:\n${problem}`);
 
-        window.location.href = `mailto:bardh.dev18@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:contact@bardh.dev?subject=${subject}&body=${body}`;
 
         if (note) { note.textContent = 'Opening your email client…'; note.className = 'form-note'; note.hidden = false; }
     });

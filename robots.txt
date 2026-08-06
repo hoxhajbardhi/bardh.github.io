@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bardh.dev/sitemap.xml

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Bardh DEV</title>
+    <meta name="description" content="Practical write-ups on .NET, Angular, and AI-powered application development.">
+    <link rel="canonical" href="https://bardh.dev/blog/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog | Bardh DEV">
+    <meta property="og:description" content="Practical write-ups on .NET, Angular, and AI-powered application development.">
+    <meta property="og:url" content="https://bardh.dev/blog/">
+    <meta property="og:site_name" content="Bardh DEV">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Blog | Bardh DEV">
+    <meta name="twitter:description" content="Practical write-ups on .NET, Angular, and AI-powered application development.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../work.css">
+    <link rel="stylesheet" href="blog.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">bardh<span>.dev</span></a>
+            <ul>
+                <li><a href="/work.html">Work</a></li>
+                <li><a href="/blog/" class="nav-active">Blog</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <header class="work-hero">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+        <div class="work-hero-content" data-aos="fade-up" data-aos-duration="800">
+            <div class="section-label">Writing</div>
+            <h1>Blog</h1>
+            <p>Practical notes on .NET, Angular, and shipping AI features — no fluff, just what worked.</p>
+        </div>
+    </header>
+
+    <main class="work-main">
+        <div class="blog-grid">
+
+            <a href="ai-dotnet-azure-openai.html" class="blog-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="blog-card-meta">
+                    <span class="blog-tag tag-ai">AI</span>
+                    <span class="blog-date">May 2026</span>
+                </div>
+                <h2>Building AI-Powered Apps with .NET 8 and Azure OpenAI</h2>
+                <p>A practical guide to integrating Azure OpenAI into .NET 8 applications — chat completions, streaming responses, and production best practices.</p>
+                <span class="blog-card-link">Read article →</span>
+            </a>
+
+            <a href="angular-signals.html" class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="blog-card-meta">
+                    <span class="blog-tag tag-angular">Angular</span>
+                    <span class="blog-date">Apr 2026</span>
+                </div>
+                <h2>Angular Signals: Reactive State Made Simple</h2>
+                <p>Angular's Signals API brings fine-grained reactivity without RxJS complexity. Learn signal(), computed(), and effect() with practical examples.</p>
+                <span class="blog-card-link">Read article →</span>
+            </a>
+
+            <a href="clean-architecture-dotnet.html" class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="blog-card-meta">
+                    <span class="blog-tag tag-dotnet">.NET</span>
+                    <span class="blog-date">Mar 2026</span>
+                </div>
+                <h2>Clean Architecture in .NET 8: A Practical Guide</h2>
+                <p>Structure your .NET 8 applications for long-term maintainability using Clean Architecture — layers, project layout, and real code examples.</p>
+                <span class="blog-card-link">Read article →</span>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Fatbardh Hoxhaj. All rights reserved.</p>
+        <details class="legal-details">
+            <summary>Legal Info ↓</summary>
+            <div class="business-info">
+                <p><strong>NIPT:</strong> M61316013C &nbsp;·&nbsp; <strong>Subjekti:</strong> Fatbardh Hoxhaj</p>
+                <p>Rruga Prokop Mima, Ndërtesa 45, Shkalla A, Kati 8, Ap. 1A, 1019 Tiranë</p>
+                <p><a href="mailto:fatbardh.hoxhaj@outlook.com">fatbardh.hoxhaj@outlook.com</a></p>
+            </div>
+        </details>
+    </footer>
+
+    <button id="backToTop" title="Back to Top">↑</button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 750, once: true, offset: 60 });</script>
+    <script src="../script.js"></script>
+</body>
+</html>

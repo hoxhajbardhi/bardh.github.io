@@ -756,8 +756,6 @@ footer p { margin-bottom: 6px; }
     section { margin-bottom: 64px; }
 
     .contact-card { padding: 48px 24px; }
-
-    .blog-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
